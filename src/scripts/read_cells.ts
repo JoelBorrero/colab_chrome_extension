@@ -116,9 +116,9 @@ function readCells(): any[] {
  */
 function readRLHFPrompt(): string {
     const metadata = Array.from(document.getElementsByClassName('ant-space')[0].children).map((e) => e as HTMLDivElement)
-    const subtopic = metadata[1].innerText
-    const useCase = metadata[2].innerText
-    const userProfile = metadata[6].innerText
+    const subtopic = metadata[5].innerText
+    const useCase = metadata[6].innerText
+    const userProfile = metadata[10].innerText
     const taskCategoryList = `T${metadata[metadata.length - 1].innerText.replace('\n', '').replaceAll('\n', ', ').replaceAll('_', ' ').substring(1)}`
     return `${useCase}\n${userProfile}\n${subtopic}\n${taskCategoryList}`
 }
@@ -296,7 +296,7 @@ async function fillAnswers(answers: Record<string, any>, turn: number | null = n
 
     const container = document.getElementsByClassName("turn-container")[turn - 1]
     const chooseButtons = Array.from(container.getElementsByTagName("button")).filter((e) => e.textContent?.includes("Choose") &&
-        e.parentElement?.parentElement?.childElementCount == 5)
+        e.parentElement?.parentElement?.childElementCount == 6)
     const buttonsTagged = chooseButtons.map((e) => {
         const key = e.parentElement?.parentElement?.children[2].textContent?.split(" ")[1]
         return { button: e, key }
